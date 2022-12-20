@@ -61,10 +61,9 @@ namespace NSE.WebApp.MVC.Controllers
         }
 
         [HttpGet("sair")]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            //TODO: RETIRAR COOKIES
-
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
 
