@@ -48,7 +48,6 @@ namespace NSE.WebApp.MVC.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UsuarioLogin usuarioLogin)
         {
-            return new StatusCodeResult(401);
             if (!ModelState.IsValid) return View(usuarioLogin);
 
 
