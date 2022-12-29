@@ -9,15 +9,13 @@
     }
   },
   "profiles": {
-    "IIS - Dev": {
+    "IIS - Development": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "sqlDebugging": true,
-      "nativeDebugging": true
+      }
     },
     "IIS - Staging": {
       "commandName": "IISExpress",
@@ -27,7 +25,7 @@
         "ASPNETCORE_ENVIRONMENT": "Staging"
       }
     },
-    "IIS - Prod": {
+    "IIS - Production": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
@@ -35,7 +33,7 @@
         "ASPNETCORE_ENVIRONMENT": "Production"
       }
     },
-    "SelfHosting": {
+    "Selfinghosting - Development": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
