@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSE.Catalogo.WebAPI", "src\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cliente", "Cliente", "{4F910753-6F88-4718-9685-F65174EE5382}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSE.Cliente.WebAPI", "src\Services\NSE.Cliente.WebAPI\NSE.Cliente.WebAPI.csproj", "{8A99EDB5-330C-4781-AD7B-60B4FF7742B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSE.Clientes.WebAPI", "src\Services\NSE.Cliente.WebAPI\NSE.Clientes.WebAPI.csproj", "{8A99EDB5-330C-4781-AD7B-60B4FF7742B4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pagamento", "Pagamento", "{BC98ABA5-E44E-41D3-AD54-DF5C1701E9F4}"
 EndProject

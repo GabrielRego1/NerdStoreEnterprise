@@ -4,7 +4,7 @@ namespace NSE.Core.DomainObjects
 {
     public class Cpf
     {
-        public const int CpfMaxLengh = 11;
+        public const int CpfMaxLength = 11;
 
         public string Numero { get; private set; }
 
@@ -22,51 +22,51 @@ namespace NSE.Core.DomainObjects
             cpf = cpf.ApenasNumeros(cpf);
 
 
-            if (cpf.Length > CpfMaxLengh)
+            if (cpf.Length > CpfMaxLength)
                 return false;
 
-            while (cpf.Length != CpfMaxLengh)
+            while (cpf.Length != CpfMaxLength)
                 cpf = '0' + cpf;
 
             var igual = true;
-            for (var i = 1; i < CpfMaxLengh && igual; i++)
+            for (var i = 1; i < CpfMaxLength && igual; i++)
                 if (cpf[i] != cpf[0])
                     igual = false;
 
             if (igual || cpf == "12345678909")
                 return false;
 
-            var numeros = new int[CpfMaxLengh];
+            var numeros = new int[CpfMaxLength];
 
-            for (var i = 0; i < CpfMaxLengh; i++)
+            for (var i = 0; i < CpfMaxLength; i++)
                 numeros[i] = int.Parse(cpf[i].ToString());
 
             var soma = 0;
             for (var i = 0; i < 9; i++)
                 soma += (10 - i) * numeros[i];
 
-            var resultado = soma % CpfMaxLengh;
+            var resultado = soma % CpfMaxLength;
 
             if (resultado == 1 || resultado == 0)
             {
                 if (numeros[9] != 0)
                     return false;
             }
-            else if (numeros[9] != CpfMaxLengh - resultado)
+            else if (numeros[9] != CpfMaxLength - resultado)
                 return false;
 
             soma = 0;
             for (var i = 0; i < 10; i++)
-                soma += (CpfMaxLengh - i) * numeros[i];
+                soma += (CpfMaxLength - i) * numeros[i];
 
-            resultado = soma % CpfMaxLengh;
+            resultado = soma % CpfMaxLength;
 
             if (resultado == 1 || resultado == 0)
             {
                 if (numeros[10] != 0)
                     return false;
             }
-            else if (numeros[10] != CpfMaxLengh - resultado)
+            else if (numeros[10] != CpfMaxLength - resultado)
                 return false;
 
             return true;
