@@ -17,7 +17,8 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.3" />
 	</ItemGroup>
 	<ItemGroup>
-		<Folder Include="Application\" />
+		<Folder Include="Application\Events\" />
+		<Folder Include="Application\Queries\" />
 		<Folder Include="Controllers\" />
 	</ItemGroup>
 	<ItemGroup>
