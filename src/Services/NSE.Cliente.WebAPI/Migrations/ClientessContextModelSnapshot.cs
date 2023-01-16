@@ -8,8 +8,8 @@ using NSE.Clientes.WebAPI.Data.Contexts;
 
 namespace NSE.Clientes.WebAPI.Migrations
 {
-    [DbContext(typeof(ClientessContext))]
-    partial class ClientessContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ClientesContext))]
+    partial class ClientesContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

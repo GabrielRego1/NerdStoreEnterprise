@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace NSE.Clientes.WebAPI.Data.Contexts
 {
-    public class ClientessContext : DbContext, IUnitOfWork
+    public class ClientesContext : DbContext, IUnitOfWork
     {
-        public ClientessContext(DbContextOptions<ClientessContext> options)
+        public ClientesContext(DbContextOptions<ClientesContext> options)
              : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
@@ -26,7 +26,7 @@ namespace NSE.Clientes.WebAPI.Data.Contexts
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
 
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ClientessContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ClientesContext).Assembly);
         }
 
         public async Task<bool> Commit()

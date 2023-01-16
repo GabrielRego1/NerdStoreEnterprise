@@ -9,7 +9,7 @@ using NSE.Clientes.WebAPI.Data.Contexts;
 
 namespace NSE.Clientes.WebAPI.Migrations
 {
-    [DbContext(typeof(ClientessContext))]
+    [DbContext(typeof(ClientesContext))]
     [Migration("20230105204930_Initial")]
     partial class Initial
     {
