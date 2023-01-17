@@ -18,7 +18,6 @@
 		<PackageReference Include="Mediatr.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<Folder Include="Application\Events\" />
 		<Folder Include="Application\Queries\" />
 		<Folder Include="Controllers\" />
 	</ItemGroup>
