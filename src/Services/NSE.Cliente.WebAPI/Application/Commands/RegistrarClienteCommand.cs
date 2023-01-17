@@ -1,4 +1,5 @@
-﻿using NSE.Core.Messages;
+﻿using NSE.Clientes.WebAPI.Application.Commands.Validations;
+using NSE.Core.Messages;
 using System;
 
 namespace NSE.Clientes.WebAPI.Application.Commands
@@ -18,6 +19,11 @@ namespace NSE.Clientes.WebAPI.Application.Commands
             Nome = nome;
             Email = email;
             Cpf = cpf;
+        }
+        public override bool EhValido()
+        {
+            ValidationResult = new RegistrarClienteValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }
