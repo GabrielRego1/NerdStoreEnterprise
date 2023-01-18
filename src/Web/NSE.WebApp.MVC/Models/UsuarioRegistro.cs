@@ -10,6 +10,7 @@ namespace NSE.WebApp.MVC.Models
         public string Nome { get; set; }
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [DisplayName("CPF")]
+        [Cpf]
         public string Cpf { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
