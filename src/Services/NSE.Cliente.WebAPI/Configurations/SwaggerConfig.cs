@@ -13,7 +13,7 @@ namespace NSE.Clientes.WebAPI.Configuration
             {
                 c.SwaggerDoc("v1", new OpenApiInfo()
                 {
-                    Title = "NerdStore Enterprise - Identidade",
+                    Title = "NerdStore Enterprise - Clientes",
                     Description = "API construida durante o curso ASP.NET Core Enterprise Applications",
                     Contact = new OpenApiContact() { Name = "Gabriel Antonio", Email = "gabrielantonio280@gmail.com" },
                     License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }

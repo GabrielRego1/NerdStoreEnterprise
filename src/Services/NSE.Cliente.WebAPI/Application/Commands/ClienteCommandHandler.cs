@@ -22,7 +22,7 @@ namespace NSE.Clientes.WebAPI.Application.Commands
 
             var cliente = new Cliente(message.Id, message.Nome, message.Email, message.Cpf);
 
-            var clienteExistente = _clienteRepository.ObterPorCpf(cliente.Cpf.Numero);
+            var clienteExistente = await _clienteRepository.ObterPorCpf(cliente.Cpf.Numero);
             if (clienteExistente != null)
             {
                 AdicionarErro("Este CPF já esta em uso");
