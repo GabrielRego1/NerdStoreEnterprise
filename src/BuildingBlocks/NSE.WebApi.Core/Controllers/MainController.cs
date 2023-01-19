@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 namespace NSE.WebApi.Core.Controllers
 {
+    [ApiController]
     public abstract class MainController : Controller
     {
         protected ICollection<string> Erros = new List<string>();

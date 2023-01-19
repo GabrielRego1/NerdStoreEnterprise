@@ -21,7 +21,7 @@ namespace NSE.Clientes.WebAPI.Services
         }
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _bus = RabbitHutch.CreateBus("host=localhost:5672");
+            _bus = RabbitHutch.CreateBus("host=localhost");
 
 
             _bus.RespondAsync<UsuarioRegistradoIntegrationEvent, ResponseMessage>(async request =>

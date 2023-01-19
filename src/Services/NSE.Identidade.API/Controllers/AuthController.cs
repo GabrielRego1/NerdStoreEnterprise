@@ -67,7 +67,7 @@ namespace NSE.Identidade.API.Controllers
                                                                          usuarioRegistro.Email,
                                                                          usuarioRegistro.Cpf);
 
-            _bus = RabbitHutch.CreateBus("host=localhost:5672");
+            _bus = RabbitHutch.CreateBus("host=localhost");
 
             var sucesso = await _bus.RequestAsync<UsuarioRegistradoIntegrationEvent, ResponseMessage>(usarioRegistrado);
 
