@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NSE.Clientes.WebAPI.Configuration;
+using NSE.Clientes.WebAPI.Configurations;
 using NSE.WebApi.Core.Identidade;
 
 namespace NSE.Clientes.WebAPI
@@ -40,6 +41,8 @@ namespace NSE.Clientes.WebAPI
             services.AddMediatR(typeof(Startup));
 
             services.RegisterServices();
+
+            services.AddMessageBusConfig(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

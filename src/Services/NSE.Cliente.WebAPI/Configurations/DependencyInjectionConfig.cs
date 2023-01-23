@@ -24,7 +24,6 @@ namespace NSE.Clientes.WebAPI.Configuration
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             services.AddScoped<IRequestHandler<RegistrarClienteCommand, ValidationResult>, ClienteCommandHandler>();
 
-            services.AddHostedService<RegistroClienteIntegrationHandler>();
         }
     }
 }
