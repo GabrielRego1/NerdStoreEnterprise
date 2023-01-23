@@ -6,9 +6,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="EasyNetQ" Version="5.1.1" />
+		<PackageReference Include="Polly" Version="7.2.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\NSE.Core\NSE.Core.csproj" />
+		<ProjectReference Include="..\NSE.Core\NSE.Core.csproj" />
 	</ItemGroup>
 </Project>
