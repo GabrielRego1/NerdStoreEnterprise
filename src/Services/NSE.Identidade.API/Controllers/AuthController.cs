@@ -51,6 +51,9 @@ namespace NSE.Identidade.API.Controllers
             if (result.Succeeded)
             {
                 var sucesso = await RegistrarCliente(usuarioRegistro);
+
+
+
                 return CustomResponse(await GerarJwt(usuarioRegistro.Email));
             }
 
