@@ -1,10 +1,10 @@
-﻿using EasyNetQ;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NSE.Core.Messages.Integration;
 using NSE.Identidade.API.Models;
+using NSE.MessageBus;
 using NSE.WebApi.Core.Controllers;
 using NSE.WebApi.Core.Identidade;
 using System;
@@ -25,15 +25,18 @@ namespace NSE.Identidade.API.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
-        private IBus _bus;
+        private readonly IMessageBus _bus;
         public AuthController(SignInManager<IdentityUser> signInManager,
                               UserManager<IdentityUser> userManager,
-                              IOptions<AppSettings> appSettings)
+                              IOptions<AppSettings> appSettings,
+                              IMessageBus bus)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _appSettings = appSettings.Value;
+            _bus = bus;
         }
+
         [HttpPost("nova-conta")]
         public async Task<ActionResult> Registrar(UsuarioRegistro usuarioRegistro)
         {
@@ -50,8 +53,13 @@ namespace NSE.Identidade.API.Controllers
 
             if (result.Succeeded)
             {
-                var sucesso = await RegistrarCliente(usuarioRegistro);
+                var clientResult = await RegistrarCliente(usuarioRegistro);
 
+                if (!clientResult.ValidationResult.IsValid)
+                {
+                    await _userManager.DeleteAsync(user);// Removendo usuario, por conta de problema na API de Clientes
+                    return CustomResponse(clientResult.ValidationResult);
+                }
 
 
                 return CustomResponse(await GerarJwt(usuarioRegistro.Email));
@@ -62,22 +70,6 @@ namespace NSE.Identidade.API.Controllers
 
             return CustomResponse();
         }
-        private async Task<ResponseMessage> RegistrarCliente(UsuarioRegistro usuarioRegistro)
-        {
-            var usuario = await _userManager.FindByEmailAsync(usuarioRegistro.Email);
-            var usarioRegistrado = new UsuarioRegistradoIntegrationEvent(Guid.Parse(usuario.Id),
-                                                                         usuarioRegistro.Nome,
-                                                                         usuarioRegistro.Email,
-                                                                         usuarioRegistro.Cpf);
-
-            _bus = RabbitHutch.CreateBus("host=localhost");
-
-            var sucesso = await _bus.RequestAsync<UsuarioRegistradoIntegrationEvent, ResponseMessage>(usarioRegistrado);
-
-            return sucesso;
-        }
-
-
         [HttpPost("autenticar")]
         public async Task<ActionResult> Login(UsuarioLogin usuarioLogin)
         {
@@ -161,5 +153,25 @@ namespace NSE.Identidade.API.Controllers
         }
         private static long ToUnixEpochDate(DateTime date)
             => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
+
+        private async Task<ResponseMessage> RegistrarCliente(UsuarioRegistro usuarioRegistro)
+        {
+            var usuario = await _userManager.FindByEmailAsync(usuarioRegistro.Email);
+            var usarioRegistrado = new UsuarioRegistradoIntegrationEvent(Guid.Parse(usuario.Id),
+                                                                         usuarioRegistro.Nome,
+                                                                         usuarioRegistro.Email,
+                                                                         usuarioRegistro.Cpf);
+            try
+            {
+                return await _bus.RequestAsync<UsuarioRegistradoIntegrationEvent, ResponseMessage>(usarioRegistrado);
+            }
+            catch
+            {
+                await _userManager.DeleteAsync(usuario);
+                throw;
+            }
+
+        }
+
     }
 }
