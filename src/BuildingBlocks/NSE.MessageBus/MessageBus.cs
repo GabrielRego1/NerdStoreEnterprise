@@ -10,15 +10,18 @@ namespace NSE.MessageBus
     public class MessageBus : IMessageBus
     {
         private IBus _bus;
-
+        private IAdvancedBus _advancedBus;
         public bool IsConnected => _bus?.IsConnected ?? false;
+        public IAdvancedBus AdvancedBus => _bus?.Advanced;
 
         private readonly string _connectionString;
+
         public MessageBus(string connectionString)
         {
             _connectionString = connectionString;
             TryConnect();
         }
+
 
         public void Publish<T>(T message) where T : IntegrationEvent
         {
@@ -88,8 +91,20 @@ namespace NSE.MessageBus
             policy.Execute(() =>
             {
                 _bus = RabbitHutch.CreateBus(_connectionString);
+                _advancedBus = _bus.Advanced;
+                _advancedBus.Disconnected += OnDisconnect;
             });
 
+        }
+
+        private void OnDisconnect(object s, EventArgs e)
+        {
+            //Caso seja desconectado do Bus, ele ira ficar tentando reconectar 4ever
+            var policy = Policy.Handle<EasyNetQException>()
+                .Or<BrokerUnreachableException>()
+                .RetryForever();
+
+            policy.Execute(TryConnect);
         }
 
         public void Dispose()

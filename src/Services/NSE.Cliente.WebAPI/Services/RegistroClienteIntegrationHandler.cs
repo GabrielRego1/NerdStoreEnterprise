@@ -22,11 +22,17 @@ namespace NSE.Clientes.WebAPI.Services
             _bus = bus;
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        private void SetResponder()
         {
             _bus.RespondAsync<UsuarioRegistradoIntegrationEvent, ResponseMessage>(async request =>
                  await RegistrarCliente(request));
 
+            _bus.AdvancedBus.Connected += OnConnect;
+        }
+
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            SetResponder();
             return Task.CompletedTask;
         }
 
@@ -42,5 +48,12 @@ namespace NSE.Clientes.WebAPI.Services
             }
             return new ResponseMessage(sucesso);
         }
+
+        private void OnConnect(object s, EventArgs e)
+        {
+            _bus.RespondAsync<UsuarioRegistradoIntegrationEvent, ResponseMessage>(async request =>
+                  await RegistrarCliente(request));
+        }
+
     }
 }
