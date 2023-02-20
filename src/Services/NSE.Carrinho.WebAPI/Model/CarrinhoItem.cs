@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NSE.Carrinho.WebAPI.Validations;
+using System;
 
 namespace NSE.Carrinho.WebAPI.Model
 {
@@ -19,5 +20,23 @@ namespace NSE.Carrinho.WebAPI.Model
         //EF RELATION
         public Guid CarrinhoId { get; set; }
         public CarrinhoCliente CarrinhoCliente { get; set; }
+
+        internal bool EhValido()
+        {
+            return new ItemCarrinhoValidation().Validate(this).IsValid;
+        }
+
+        internal void AssociarCarrinho(Guid carrinhoId)
+        {
+            CarrinhoId = carrinhoId;
+        }
+        internal decimal CalcularValor()
+        {
+            return Quantidade * Valor;
+        }
+        internal void AdicionarUnidades(int unidades)
+        {
+            Quantidade += unidades;
+        }
     }
 }
