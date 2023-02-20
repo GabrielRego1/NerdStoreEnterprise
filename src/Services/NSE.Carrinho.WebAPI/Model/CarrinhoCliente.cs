@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using NSE.Carrinho.WebAPI.Validations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,6 +19,21 @@ namespace NSE.Carrinho.WebAPI.Model
         public Guid ClienteId { get; set; }
         public decimal ValorTotal { get; set; }
         public List<CarrinhoItem> Itens { get; set; } = new List<CarrinhoItem>();
+
+        public ValidationResult ValidationResult { get; set; }
+
+        internal bool EhValido()
+        {
+            var erros = Itens.SelectMany(i => new ItemCarrinhoValidation().Validate(i).Errors).ToList();
+
+            erros.AddRange(new CarrinhoClienteValidation().Validate(this).Errors);
+
+            ValidationResult = new ValidationResult(erros);
+
+            return ValidationResult.IsValid;
+        }
+
+
         internal void CalcularValorCarrinho()
         {
             ValorTotal = Itens.Sum(p => p.CalcularValor());
@@ -32,8 +49,8 @@ namespace NSE.Carrinho.WebAPI.Model
 
         internal void AdicionarItem(CarrinhoItem item)
         {
-            if (item.EhValido())
-                return;
+            //if (item.EhValido())
+            //return;
 
             item.AssociarCarrinho(Id);
 
@@ -51,8 +68,8 @@ namespace NSE.Carrinho.WebAPI.Model
         }
         internal void AtualizarItem(CarrinhoItem item)
         {
-            if (!item.EhValido())
-                return;
+            //if (!item.EhValido())
+            //    return;
 
             item.AssociarCarrinho(Id);
 
