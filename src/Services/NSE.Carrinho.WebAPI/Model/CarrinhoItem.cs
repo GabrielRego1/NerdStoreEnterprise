@@ -38,5 +38,9 @@ namespace NSE.Carrinho.WebAPI.Model
         {
             Quantidade += unidades;
         }
+        internal void AtualizarUnidades(int unidades)
+        {
+            Quantidade = unidades;
+        }
     }
 }
