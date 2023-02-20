@@ -22,7 +22,7 @@ namespace NSE.Carrinho.WebAPI.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("carrinho")]
         public async Task<CarrinhoCliente> ObterCarrinho()
         {
             return await ObterCarrinhoCliente() ?? new CarrinhoCliente();
