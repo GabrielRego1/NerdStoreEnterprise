@@ -29,11 +29,11 @@ namespace NSE.WebApp.MVC.Services
             {
                 return new UsuarioRespostaLogin
                 {
-                    ResponseResult = await DeserialiarObjetoResponse<ResponseResult>(response)
+                    ResponseResult = await DeserializarObjetoResponse<ResponseResult>(response)
                 };
             }
 
-            return await DeserialiarObjetoResponse<UsuarioRespostaLogin>(response);
+            return await DeserializarObjetoResponse<UsuarioRespostaLogin>(response);
         }
 
         public async Task<UsuarioRespostaLogin> Registro(UsuarioRegistro usuarioRegistro)
@@ -46,10 +46,10 @@ namespace NSE.WebApp.MVC.Services
             {
                 return new UsuarioRespostaLogin
                 {
-                    ResponseResult = await DeserialiarObjetoResponse<ResponseResult>(response)
+                    ResponseResult = await DeserializarObjetoResponse<ResponseResult>(response)
                 };
             }
-            return await DeserialiarObjetoResponse<UsuarioRespostaLogin>(response);
+            return await DeserializarObjetoResponse<UsuarioRespostaLogin>(response);
         }
     }
 }

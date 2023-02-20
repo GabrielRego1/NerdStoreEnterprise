@@ -25,7 +25,7 @@ namespace NSE.WebApp.MVC.Services
 
             TratarErrosResponse(response);
 
-            return await DeserialiarObjetoResponse<ProdutoViewModel>(response);
+            return await DeserializarObjetoResponse<ProdutoViewModel>(response);
 
         }
 
@@ -35,7 +35,7 @@ namespace NSE.WebApp.MVC.Services
 
             TratarErrosResponse(response);
 
-            return await DeserialiarObjetoResponse<IEnumerable<ProdutoViewModel>>(response);
+            return await DeserializarObjetoResponse<IEnumerable<ProdutoViewModel>>(response);
 
         }
     }
