@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NSE.Carrinho.WebAPI.Model;
 using NSE.WebApi.Core.Controllers;
+using NSE.WebApi.Core.Usuario;
 using System;
 using System.Threading.Tasks;
 
@@ -10,6 +11,12 @@ namespace NSE.Carrinho.WebAPI.Controllers
     [Authorize]
     public class CarrinhoController : MainController
     {
+        private readonly IAspNetUser _user;
+
+        public CarrinhoController(IAspNetUser user)
+        {
+            _user = user;
+        }
 
         [HttpGet]
         public async Task<CarrinhoCliente> ObterCarrinho()
