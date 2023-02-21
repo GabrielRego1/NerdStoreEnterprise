@@ -53,21 +53,18 @@ namespace NSE.Carrinho.WebAPI.Controllers
         {
             var carrinho = await ObterCarrinhoCliente();
             var itemCarrinho = await ObterItemCarrinhoValidado(produtoId, carrinho, item);
-
-            if (itemCarrinho == null)
-                return CustomResponse();
+            if (itemCarrinho == null) return CustomResponse();
 
             carrinho.AtualizarUnidades(itemCarrinho, item.Quantidade);
 
             ValidarCarrinho(carrinho);
-            if (!OperacaoValida())
+            if (!OperacaoValida()) 
                 return CustomResponse();
 
-            _context.CarrinhoItens.Update(item);
+            _context.CarrinhoItens.Update(itemCarrinho);
             _context.CarrinhoCliente.Update(carrinho);
 
             await PersistirDados();
-
             return CustomResponse();
         }
 
