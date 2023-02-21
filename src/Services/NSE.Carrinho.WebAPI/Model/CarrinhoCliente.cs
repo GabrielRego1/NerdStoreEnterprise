@@ -83,7 +83,7 @@ namespace NSE.Carrinho.WebAPI.Model
 
         internal void AtualizarUnidades(CarrinhoItem item, int unidades)
         {
-            item.AtualizarUnidades(item.Quantidade);
+            item.AtualizarUnidades(unidades);
             AtualizarItem(item);
         }
 

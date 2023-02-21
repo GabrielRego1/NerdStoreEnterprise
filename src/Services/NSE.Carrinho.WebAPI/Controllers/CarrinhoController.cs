@@ -57,7 +57,7 @@ namespace NSE.Carrinho.WebAPI.Controllers
             if (itemCarrinho == null)
                 return CustomResponse();
 
-            carrinho.AtualizarUnidades(item, item.Quantidade);
+            carrinho.AtualizarUnidades(itemCarrinho, item.Quantidade);
 
             ValidarCarrinho(carrinho);
             if (!OperacaoValida())

@@ -21,7 +21,7 @@ namespace NSE.WebApp.MVC.Controllers
         }
 
 
-        [Route("carrinho")]
+        [HttpGet("carrinho")]
         public async Task<IActionResult> Index()
         {
             return View(await _carrinhoService.ObterCarrinho());
