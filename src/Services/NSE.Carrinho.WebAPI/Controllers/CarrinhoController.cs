@@ -31,6 +31,7 @@ namespace NSE.Carrinho.WebAPI.Controllers
         [HttpPost("carrinho")]
         public async Task<IActionResult> AdicionarItemCarrinho(CarrinhoItem item)
         {
+
             var carrinho = await ObterCarrinhoCliente();
 
             if (carrinho == null)
@@ -38,7 +39,6 @@ namespace NSE.Carrinho.WebAPI.Controllers
             else
                 ManipularCarrinhoExistente(carrinho, item);
 
-            ValidarCarrinho(carrinho);
             if (!OperacaoValida())
                 return CustomResponse();
 
@@ -97,6 +97,7 @@ namespace NSE.Carrinho.WebAPI.Controllers
 
         }
 
+        #region Metodos especialistas do CRUD
         private async Task<CarrinhoCliente> ObterCarrinhoCliente()
         {
             return await _context.CarrinhoCliente
@@ -104,11 +105,13 @@ namespace NSE.Carrinho.WebAPI.Controllers
                 .FirstOrDefaultAsync(c => c.ClienteId == _user.ObterUserId());
         }
 
+
         private void ManipularNovoCarrinho(CarrinhoItem item)
         {
             var carrinho = new CarrinhoCliente(_user.ObterUserId());
 
             carrinho.AdicionarItem(item);
+
 
             _context.CarrinhoCliente.Add(carrinho);
         }
@@ -118,6 +121,8 @@ namespace NSE.Carrinho.WebAPI.Controllers
             var produtoItemExistente = carrinho.CarrinhoItemExistente(item);
 
             carrinho.AdicionarItem(item);
+
+            ValidarCarrinho(carrinho);
 
             if (produtoItemExistente)
             {
@@ -173,5 +178,6 @@ namespace NSE.Carrinho.WebAPI.Controllers
             carrinho.ValidationResult.Errors.ToList().ForEach(e => AdicionarErroProcessamento(e.ErrorMessage));
             return false;
         }
+        #endregion
     }
 }

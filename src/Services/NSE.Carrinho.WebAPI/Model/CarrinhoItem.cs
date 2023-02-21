@@ -1,5 +1,6 @@
 ﻿using NSE.Carrinho.WebAPI.Validations;
 using System;
+using System.Text.Json.Serialization;
 
 namespace NSE.Carrinho.WebAPI.Model
 {
@@ -19,6 +20,7 @@ namespace NSE.Carrinho.WebAPI.Model
 
         //EF RELATION
         public Guid CarrinhoId { get; set; }
+        [JsonIgnore]
         public CarrinhoCliente CarrinhoCliente { get; set; }
 
         internal bool EhValido()
