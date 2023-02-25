@@ -10,10 +10,10 @@ namespace NSE.WebApp.MVC.Controllers
     [Authorize]
     public class CarrinhoController : MainController
     {
-        private readonly ICarrinhoService _carrinhoService;
+        private readonly IComprasBffService _carrinhoService;
         private readonly ICatalogoService _catalogoService;
 
-        public CarrinhoController(ICarrinhoService carrinhoService,
+        public CarrinhoController(IComprasBffService carrinhoService,
                                   ICatalogoService catalogoService)
         {
             _carrinhoService = carrinhoService;
@@ -28,7 +28,7 @@ namespace NSE.WebApp.MVC.Controllers
         }
 
         [HttpPost("carrinho/adicionar-item")]
-        public async Task<IActionResult> AdicionarItemCarrinho(ItemProdutoViewModel itemProdutoViewModel)
+        public async Task<IActionResult> AdicionarItemCarrinho(ItemCarrinhoViewModel itemProdutoViewModel)
         {
             var produto = await _catalogoService.ObterPorId(itemProdutoViewModel.ProdutoId);
 
@@ -56,7 +56,7 @@ namespace NSE.WebApp.MVC.Controllers
             if (!OperacaoValida())
                 return View("Index", await _carrinhoService.ObterCarrinho());
 
-            var itemProduto = new ItemProdutoViewModel
+            var itemProduto = new ItemCarrinhoViewModel
             {
                 ProdutoId = produtoId,
                 Quantidade = quantidade

@@ -2,7 +2,7 @@
 
 namespace NSE.WebApp.MVC.Models
 {
-    public class ItemProdutoViewModel
+    public class ItemCarrinhoViewModel
     {
         public Guid ProdutoId { get; set; }
         public string Nome { get; set; }

@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace NSE.WebApp.MVC.Services
 {
-    public interface ICarrinhoService
+    public interface IComprasBffService
     {
         Task<CarrinhoViewModel> ObterCarrinho();
-        Task<ResponseResult> AdicionarItemCarrinho(ItemProdutoViewModel produto);
-        Task<ResponseResult> AtualizarItemCarrinho(Guid produtoId, ItemProdutoViewModel produto);
+        Task<ResponseResult> AdicionarItemCarrinho(ItemCarrinhoViewModel produto);
+        Task<ResponseResult> AtualizarItemCarrinho(Guid produtoId, ItemCarrinhoViewModel produto);
         Task<ResponseResult> RemoverItemCarrinho(Guid produtoId);
     }
 }
