@@ -1,4 +1,6 @@
-﻿namespace NSE.WebApp.MVC.Models
+﻿using NSE.Core.Communication;
+
+namespace NSE.WebApp.MVC.Models
 {
     public class UsuarioRespostaLogin
     {

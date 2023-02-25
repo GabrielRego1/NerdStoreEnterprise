@@ -17,6 +17,7 @@
 		<ProjectReference Include="..\..\BuildingBlocks\NSE.Core\NSE.Core.csproj" />
 		<ProjectReference Include="..\..\BuildingBlocks\NSE.MessageBus\NSE.MessageBus.csproj" />
 		<ProjectReference Include="..\..\BuildingBlocks\NSE.WebApi.Core\NSE.WebApi.Core.csproj" />
+		<ProjectReference Include="..\..\Web\NSE.WebApp.MVC\NSE.WebApp.MVC.csproj" />
 	</ItemGroup>
 
 </Project>
