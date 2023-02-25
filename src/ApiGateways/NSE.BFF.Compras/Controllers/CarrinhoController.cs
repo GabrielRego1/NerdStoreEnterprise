@@ -14,9 +14,10 @@ namespace NSE.BFF.Compras.Controllers
     {
         private readonly ICarrinhoService _carrinhoService;
         private readonly ICatalogoService _catalogoService;
-        public CarrinhoController(ICarrinhoService carrinhoService, ICatalogoService _catalogoService)
+        public CarrinhoController(ICarrinhoService carrinhoService, ICatalogoService catalogoService)
         {
-
+            _carrinhoService = carrinhoService;
+            _catalogoService = catalogoService;
         }
 
         [HttpGet("compras/carrinho")]
@@ -53,7 +54,6 @@ namespace NSE.BFF.Compras.Controllers
         }
 
         [HttpPut("compras/carrinho/items/{produtoId}")]
-        [Route("compras/carrinho/items/{produtoId}")]
         public async Task<IActionResult> AtualizarItemCarrinho(Guid produtoId, ItemCarrinhoDTO itemProduto)
         {
             var produto = await _catalogoService.ObterPorId(produtoId);
