@@ -18,6 +18,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\BuildingBlocks\NSE.Core\NSE.Core.csproj" />
+		<ProjectReference Include="..\NSE.Pedidos.Domain\NSE.Pedidos.Domain.csproj" />
 	</ItemGroup>
 
 </Project>
