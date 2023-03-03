@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using NSE.Core.Mediator;
 using NSE.Pedidos.Domain.Vouchers;
 using NSE.Pedidos.Infra.Data;
 using NSE.Pedidos.Infra.Data.Repositories;
@@ -11,9 +12,14 @@ namespace NSE.Pedido.WebAPI.Configurations
     {
         public static void RegisterServices(this IServiceCollection services)
         {
+            // API
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IAspNetUser, AspNetUser>();
 
+            // Application
+            services.AddScoped<IMediatorHandler, MediatorHandler>();
+
+            // Data
             services.AddScoped<IVoucherRepository, VoucherRepository>();
             services.AddScoped<PedidosContext>();
         }

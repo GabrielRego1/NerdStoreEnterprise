@@ -8,4 +8,8 @@
     <Folder Include="Pedidos\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\NSE.Core\NSE.Core.csproj" />
+  </ItemGroup>
+
 </Project>
