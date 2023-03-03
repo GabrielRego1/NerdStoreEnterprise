@@ -58,7 +58,7 @@ namespace NSE.Carrinho.WebAPI.Controllers
             carrinho.AtualizarUnidades(itemCarrinho, item.Quantidade);
 
             ValidarCarrinho(carrinho);
-            if (!OperacaoValida()) 
+            if (!OperacaoValida())
                 return CustomResponse();
 
             _context.CarrinhoItens.Update(itemCarrinho);
@@ -93,6 +93,7 @@ namespace NSE.Carrinho.WebAPI.Controllers
 
 
         }
+
 
         #region Metodos especialistas do CRUD
         private async Task<CarrinhoCliente> ObterCarrinhoCliente()
