@@ -48,7 +48,7 @@ namespace NSE.Carrinho.WebAPI.Model
         internal void CalcularValorCarrinho()
         {
             ValorTotal = Itens.Sum(p => p.CalcularValor());
-            CalcularValorCarrinho();
+            CalcularValorTotalDesconto();
         }
 
         private void CalcularValorTotalDesconto()
