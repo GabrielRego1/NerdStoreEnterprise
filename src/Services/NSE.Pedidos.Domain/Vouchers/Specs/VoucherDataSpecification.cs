@@ -24,7 +24,7 @@ namespace NSE.Pedidos.Domain.Vouchers.Specs
     {
         public override Expression<Func<Voucher, bool>> ToExpression()
         {
-            return voucher => voucher.Ativo;
+            return voucher => voucher.Ativo && !voucher.Utilizado;
         }
     }
 }
