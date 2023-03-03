@@ -4,7 +4,9 @@ using NSE.Core.Data;
 using NSE.Core.DomainObjects;
 using NSE.Core.Mediator;
 using NSE.Core.Messages;
+using NSE.Pedidos.Domain.Pedidos;
 using NSE.Pedidos.Domain.Vouchers;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,6 +23,9 @@ namespace NSE.Pedidos.Infra.Data
         }
 
         public DbSet<Voucher> Vouchers { get; set; }
+        public DbSet<PedidoItem> PedidoItens { get; set; }
+
+        public DbSet<Pedido> Pedidos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,11 +38,33 @@ namespace NSE.Pedidos.Infra.Data
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(PedidosContext).Assembly);
 
+
+            //Removendo Delete Cascate
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes()
+                .SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
+
+            modelBuilder.HasSequence<int>("MinhaSequencia").StartsAt(1000).IncrementsBy(1);
+
             base.OnModelCreating(modelBuilder);
         }
 
         public async Task<bool> Commit()
         {
+
+            foreach (var entry in ChangeTracker.Entries()
+             .Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Property("DataCadastro").CurrentValue = DateTime.Now;
+                }
+
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.Property("DataCadastro").IsModified = false;
+                }
+            }
+
             var sucesso = await base.SaveChangesAsync() > 0;
             if (sucesso)
                 await _mediatorHandler.PublicarEventos(this);
