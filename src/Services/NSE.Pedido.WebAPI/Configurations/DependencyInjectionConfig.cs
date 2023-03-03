@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using NSE.Core.Mediator;
 using NSE.Pedido.WebAPI.Application.Queries;
+using NSE.Pedidos.Domain.Pedidos;
 using NSE.Pedidos.Domain.Vouchers;
 using NSE.Pedidos.Infra.Data;
 using NSE.Pedidos.Infra.Data.Repositories;
@@ -22,6 +23,7 @@ namespace NSE.Pedido.WebAPI.Configurations
             services.AddScoped<IVoucherQuerie, VoucherQuerie>();
 
             // Data
+            services.AddScoped<IPedidoRepository, PedidoRepository>();
             services.AddScoped<IVoucherRepository, VoucherRepository>();
             services.AddScoped<PedidosContext>();
         }
