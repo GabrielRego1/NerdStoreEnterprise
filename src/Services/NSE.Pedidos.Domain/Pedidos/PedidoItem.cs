@@ -1,8 +1,9 @@
-﻿using System;
+﻿using NSE.Core.DomainObjects;
+using System;
 
 namespace NSE.Pedidos.Domain.Pedidos
 {
-    public class PedidoItem
+    public class PedidoItem : Entity
     {
         public Guid PedidoId { get; private set; }
         public Guid ProdutoId { get; private set; }
