@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NSE.Pedido.WebAPI.Application.DTO
+namespace NSE.Pedidos.WebAPI.Application.DTO
 {
 
     public class PedidoDTO

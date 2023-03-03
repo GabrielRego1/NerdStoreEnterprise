@@ -1,4 +1,4 @@
-﻿namespace NSE.Pedido.WebAPI.Application.DTO
+﻿namespace NSE.Pedidos.WebAPI.Application.DTO
 {
     public class EnderecoDTO
     {

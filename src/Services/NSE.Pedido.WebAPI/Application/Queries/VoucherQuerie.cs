@@ -1,8 +1,8 @@
-﻿using NSE.Pedido.WebAPI.Application.DTO;
+﻿using NSE.Pedidos.WebAPI.Application.DTO;
 using NSE.Pedidos.Domain.Vouchers;
 using System.Threading.Tasks;
 
-namespace NSE.Pedido.WebAPI.Application.Queries
+namespace NSE.Pedidos.WebAPI.Application.Queries
 {
     public interface IVoucherQuerie
     {

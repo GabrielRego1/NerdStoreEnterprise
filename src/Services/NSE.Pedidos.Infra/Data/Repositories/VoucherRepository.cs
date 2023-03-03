@@ -24,5 +24,10 @@ namespace NSE.Pedidos.Infra.Data.Repositories
         {
             _context.Dispose();
         }
+
+        public void Atualizar(Voucher voucher)
+        {
+            _context.Update(voucher);
+        }
     }
 }

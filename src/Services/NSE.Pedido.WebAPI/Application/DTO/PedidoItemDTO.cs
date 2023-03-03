@@ -1,7 +1,7 @@
 ﻿using System;
 using NSE.Pedidos.Domain.Pedidos;
 
-namespace NSE.Pedido.WebAPI.Application.DTO
+namespace NSE.Pedidos.WebAPI.Application.DTO
 {
     public class PedidoItemDTO
     {

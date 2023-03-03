@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 using NSE.Pedidos.Infra.Data;
 using NSE.WebApi.Core.Identidade;
 
-namespace NSE.Pedido.WebAPI.Configurations
+namespace NSE.Pedidos.WebAPI.Configurations
 {
     public static class ApiConfig
     {

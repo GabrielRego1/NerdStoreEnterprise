@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using NSE.Core.Mediator;
-using NSE.Pedido.WebAPI.Application.Queries;
+using NSE.Pedidos.WebAPI.Application.Queries;
 using NSE.Pedidos.Domain.Pedidos;
 using NSE.Pedidos.Domain.Vouchers;
 using NSE.Pedidos.Infra.Data;
 using NSE.Pedidos.Infra.Data.Repositories;
 using NSE.WebApi.Core.Usuario;
 
-namespace NSE.Pedido.WebAPI.Configurations
+namespace NSE.Pedidos.WebAPI.Configurations
 {
     public static class DependencyInjectionConfig
     {

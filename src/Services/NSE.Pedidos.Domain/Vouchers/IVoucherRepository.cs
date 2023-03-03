@@ -7,5 +7,6 @@ namespace NSE.Pedidos.Domain.Vouchers
     {
 
         Task<Voucher> ObterVoucherPorCodigo(string codigo);
+        void Atualizar(Voucher voucher);
     }
 }
