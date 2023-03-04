@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NSE.Pedidos.Domain.Pedidos;
+using System;
 using System.Collections.Generic;
 
 namespace NSE.Pedidos.WebAPI.Application.DTO
@@ -20,7 +21,7 @@ namespace NSE.Pedidos.WebAPI.Application.DTO
         public List<PedidoItemDTO> PedidoItems { get; set; }
         public EnderecoDTO Endereco { get; set; }
 
-        public static PedidoDTO ParaPedidoDTO(Pedidos.Domain.Pedidos.Pedido pedido)
+        public static PedidoDTO ParaPedidoDTO(Pedido pedido)
         {
             var pedidoDTO = new PedidoDTO
             {
