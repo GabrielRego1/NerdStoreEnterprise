@@ -27,8 +27,9 @@ namespace NSE.Carrinho.WebAPI.Data
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CarrinhoContext).Assembly);
 
-            //Removendo delete cascate
-            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
+            //Habilitando delete cascate (Ao deletar o CarrinhoCliente, tambem ira apagar o CarrinhoItens relacionado )
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+                relationship.DeleteBehavior = DeleteBehavior.Cascade;
         }
     }
 }
