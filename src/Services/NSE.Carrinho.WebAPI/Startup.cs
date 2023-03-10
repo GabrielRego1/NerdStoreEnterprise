@@ -37,6 +37,7 @@ namespace NSE.Carrinho.WebAPI
 
             services.RegisterServices();
 
+            services.AddMessageBusConfiguration(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
