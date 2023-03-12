@@ -15,8 +15,8 @@ namespace NSE.WebApp.MVC.Configuration
                 .WaitAndRetryAsync(new[]
                 {
                     TimeSpan.FromSeconds(1),
+                    TimeSpan.FromSeconds(3),
                     TimeSpan.FromSeconds(5),
-                    TimeSpan.FromSeconds(10),
                 }, (outcome, timespan, retryCount, context) =>
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;

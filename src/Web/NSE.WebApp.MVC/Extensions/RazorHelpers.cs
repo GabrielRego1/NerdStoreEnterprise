@@ -12,6 +12,13 @@ namespace NSE.WebApp.MVC.Extensions
 
         public static string FormatoMoeda(this RazorPage page, decimal valor)
             => valor > 0 ? string.Format(Thread.CurrentThread.CurrentCulture, "{0:C}", valor) : "Gratuito";
+        private static string FormatoMoeda(decimal valor)
+            => string.Format(Thread.CurrentThread.CurrentCulture, "{0:C}", valor);
+
+
+        public static string UnidadesPorProdutoValorTotal(this RazorPage page, int unidades, decimal valor)
+            => $"{unidades}x {FormatoMoeda(valor)} = Total: {FormatoMoeda(valor * unidades)}";
+
 
         public static string HashEmailForGravatar(this RazorPage page, string email)
         {
@@ -24,6 +31,7 @@ namespace NSE.WebApp.MVC.Extensions
             }
             return sBuilder.ToString();
         }
+
         public static string UnidadesPorProdutos(this RazorPage page, int unidades) => unidades < 1 ? $"{unidades} unidades" : $"{unidades} unidade";
 
         public static string SelectOptionsPorQuantidade(this RazorPage page, int quantidade, int valorSelecionado = 0)
