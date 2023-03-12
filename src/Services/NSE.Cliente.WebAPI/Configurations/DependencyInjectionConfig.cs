@@ -6,7 +6,6 @@ using NSE.Clientes.WebAPI.Application.Events;
 using NSE.Clientes.WebAPI.Data.Contexts;
 using NSE.Clientes.WebAPI.Data.Repositories;
 using NSE.Clientes.WebAPI.Models;
-using NSE.Clientes.WebAPI.Services;
 using NSE.Core.Mediator;
 
 namespace NSE.Clientes.WebAPI.Configuration
@@ -23,7 +22,7 @@ namespace NSE.Clientes.WebAPI.Configuration
 
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             services.AddScoped<IRequestHandler<RegistrarClienteCommand, ValidationResult>, ClienteCommandHandler>();
-
+            services.AddScoped<IRequestHandler<AdicionarEnderecoCommand, ValidationResult>, ClienteCommandHandler>();
         }
     }
 }
