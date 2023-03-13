@@ -4,6 +4,7 @@ using NSE.Catalogo.WebAPI.Models;
 using NSE.Core.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace NSE.Catalogo.WebAPI.Data.Repositories
@@ -15,6 +16,18 @@ namespace NSE.Catalogo.WebAPI.Data.Repositories
         public ProdutoRepository(CatalogoContext context)
         {
             _context = context;
+        }
+        public async Task<List<Produto>> ObterProdutosPorId(string ids)
+        {
+            var idsGuid = ids.Split(',')
+                .Select(id => (Ok: Guid.TryParse(id, out var x), Value: x));
+
+            if (!idsGuid.All(nid => nid.Ok)) return new List<Produto>();
+
+            var idsValue = idsGuid.Select(id => id.Value);
+
+            return await _context.Produtos.AsNoTracking()
+                .Where(p => idsValue.Contains(p.Id) && p.Ativo).ToListAsync();
         }
 
         public async Task<IEnumerable<Produto>> ObterTodos()
