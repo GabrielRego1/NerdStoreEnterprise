@@ -31,6 +31,7 @@ namespace NSE.Pedidos.WebAPI.Configurations
             // Application
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             services.AddScoped<IVoucherQuerie, VoucherQuerie>();
+            services.AddScoped<IPedidoQueries, PedidoQueries>();
 
             // Data
             services.AddScoped<IPedidoRepository, PedidoRepository>();
